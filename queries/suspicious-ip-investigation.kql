@@ -1,0 +1,5 @@
+let SuspiciousIP = "<IP_ADDRESS>";
+Syslog
+| where SyslogMessage contains SuspiciousIP
+| project TimeGenerated, Computer, ProcessName, SyslogMessage
+| order by TimeGenerated desc
