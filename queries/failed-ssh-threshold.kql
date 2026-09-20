@@ -1,0 +1,6 @@
+Syslog
+| where ProcessName == "sshd"
+| where SyslogMessage contains "Failed password"
+| summarize FailedAttempts=count() by Computer, bin(TimeGenerated, 5m)
+| where FailedAttempts >= 3
+| order by TimeGenerated desc
