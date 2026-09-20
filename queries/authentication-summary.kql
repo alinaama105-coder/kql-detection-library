@@ -1,0 +1,4 @@
+Syslog
+| where ProcessName == "sshd"
+| summarize Events=count() by Computer, bin(TimeGenerated, 5m)
+| order by TimeGenerated desc
