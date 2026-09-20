@@ -1,0 +1,5 @@
+Syslog
+| where ProcessName == "sshd"
+| where SyslogMessage contains "Accepted"
+| project TimeGenerated, Computer, SyslogMessage
+| order by TimeGenerated desc
