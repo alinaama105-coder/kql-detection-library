@@ -1,0 +1,6 @@
+Syslog
+| where ProcessName == "sshd"
+| where SyslogMessage contains "Failed password"
+| extend SourceIP = extract(@"from\s+([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)", 1, SyslogMessage)
+| summarize FailedAttempts=count() by SourceIP
+| order by FailedAttempts desc
