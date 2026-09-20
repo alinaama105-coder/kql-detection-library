@@ -1,0 +1,5 @@
+Syslog
+| where TimeGenerated > ago(1h)
+| where ProcessName == "sshd"
+| project TimeGenerated, Computer, SyslogMessage
+| order by TimeGenerated desc
